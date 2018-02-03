@@ -1,8 +1,13 @@
 import express from 'express';
 const router = express.Router();
 
+import Todo from '../models/todo';
+
 router.get('/', (req, res) => {
-    res.render('index');
+    Todo.find({})
+        .then(results => {
+            res.render('index', {todos: results});
+        })
 });
 
 export default router;

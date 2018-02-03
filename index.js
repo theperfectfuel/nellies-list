@@ -6,7 +6,12 @@ import bodyParser from 'body-parser';
 import router from './routes/routes';
 
 const PORT = process.env.PORT || "8080";
+const DBUrl = process.env.DBUrl || 'mongodb://localhost:27017/todos';
 const app = express();
+
+mongoose.connect(DBUrl, () => {
+    console.log('DB connected');
+});
 
 app.engine('hbs', expressHbs({
     extname: 'hbs'

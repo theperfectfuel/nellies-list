@@ -8,12 +8,18 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
+var _todo = require('../models/todo');
+
+var _todo2 = _interopRequireDefault(_todo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
 
 router.get('/', function (req, res) {
-    res.render('index');
+    _todo2.default.find({}).then(function (results) {
+        res.render('index', { todos: results });
+    });
 });
 
 exports.default = router;
