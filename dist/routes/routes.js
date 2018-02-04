@@ -51,4 +51,11 @@ router.post('/todo/done/:id', function (req, res) {
     });
 });
 
+router.post('/todo/delete/:id', function (req, res) {
+    var todoId = req.params.id;
+    _todo2.default.findByIdAndRemove(todoId).exec().then(function () {
+        res.redirect('/');
+    });
+});
+
 exports.default = router;
