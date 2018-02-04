@@ -45,4 +45,13 @@ router.post('/todo/done/:id', (req, res) => {
         });
 });
 
+router.post('/todo/delete/:id', (req, res) => {
+    let todoId = req.params.id;
+    Todo.findByIdAndRemove(todoId)
+        .exec()
+        .then(() => {
+            res.redirect('/');
+        });
+});
+
 export default router;

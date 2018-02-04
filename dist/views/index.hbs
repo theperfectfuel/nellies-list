@@ -27,6 +27,9 @@
                         <form action="/todo/done/{{this._id}}" method="post">
                             <button type="submit">Done</button>
                         </form>
+                        <form action="/todo/delete/{{this._id}}" method="post">
+                            <button type="submit">Delete</button>
+                        </form>
                     </li>
                 {{/each}}
             </ul>
@@ -42,6 +45,9 @@
                     <li>{{this.description}} - {{this.done}}
                         <form action="/todo/done/{{this._id}}" method="post">
                             <button type="submit">Undo</button>
+                        </form>
+                        <form action="/todo/delete/{{this._id}}" method="post">
+                            <button type="submit">Delete</button>
                         </form>
                     </li>
                 {{/each}}
