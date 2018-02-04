@@ -23,4 +23,13 @@ router.get('/done', (req, res) => {
         })
 });
 
+router.post('/todo', (req, res) => {
+    let newTodo = new Todo({description: req.body.description});
+    newTodo
+        .save()
+        .then(() => {
+            res.redirect('/');
+        });
+});
+
 export default router;
