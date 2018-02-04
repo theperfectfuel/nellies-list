@@ -9,6 +9,11 @@
 <body>
     <h1>Nellie's List</h1>
 
+    <form action="/todo" method="post">
+        <input type="text" name="description">
+        <button type="submit">Add Todo</button>
+    </form>
+
     {{#if todos}}
         <section>
             <h3>ToDos</h3>

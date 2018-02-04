@@ -34,4 +34,11 @@ router.get('/done', function (req, res) {
     });
 });
 
+router.post('/todo', function (req, res) {
+    var newTodo = new _todo2.default({ description: req.body.description });
+    newTodo.save().then(function () {
+        res.redirect('/');
+    });
+});
+
 exports.default = router;
