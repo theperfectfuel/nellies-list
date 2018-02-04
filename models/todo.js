@@ -10,6 +10,26 @@ const todoSchema = new Schema({
     done: {
         type: Boolean,
         default: false
+    },
+    owner: {
+        type: String
+    },
+    createdBy: {
+        type: String,
+        default: "Me"
+    },
+    createdDate: {
+        type: Date,
+        default: Date.now
+    },
+    dueDate: {
+        type: Date
+    },
+    category: {
+        type: String
+    },
+    value: {
+        type: Number
     }
 });
 

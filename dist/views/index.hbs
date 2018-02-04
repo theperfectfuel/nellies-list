@@ -10,9 +10,11 @@
     <h1>Nellie's List</h1>
     <section>
         <h3>Welcome</h3>
-        {{#each todos}}
-            {{this.description}}
-        {{/each}}
+        <ul>
+            {{#each todos}}
+                <li>{{this.description}} - {{this.done}}</li>
+            {{/each}}
+        </ul>
     </section>
 </body>
 </html>

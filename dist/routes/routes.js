@@ -22,4 +22,13 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/done', function (req, res) {
+    _todo2.default.find({}).then(function (results) {
+        var doneTodos = results.filter(function (todo) {
+            return todo.done;
+        });
+        res.render('index', { todos: doneTodos });
+    });
+});
+
 exports.default = router;

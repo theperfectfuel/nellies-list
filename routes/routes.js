@@ -10,4 +10,14 @@ router.get('/', (req, res) => {
         })
 });
 
+router.get('/done', (req, res) => {
+    Todo.find({})
+        .then(results => {
+            let doneTodos = results.filter(todo => {
+                return todo.done;
+            })
+            res.render('index', {todos: doneTodos});
+        })
+});
+
 export default router;
