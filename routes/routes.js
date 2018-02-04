@@ -32,4 +32,17 @@ router.post('/todo', (req, res) => {
         });
 });
 
+router.post('/todo/done/:id', (req, res) => {
+    let todoId = req.params.id;
+    Todo.findById(todoId)
+        .exec()
+        .then(todo => {
+            todo.done = !todo.done;
+            return todo.save();
+        })
+        .then(() => {
+            res.redirect('/');
+        });
+});
+
 export default router;

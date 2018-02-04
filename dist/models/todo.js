@@ -38,7 +38,10 @@ var todoSchema = new Schema({
     category: {
         type: String
     },
-    value: {
+    pointValue: {
+        type: Number
+    },
+    priority: {
         type: Number
     }
 });

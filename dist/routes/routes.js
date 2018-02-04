@@ -41,4 +41,14 @@ router.post('/todo', function (req, res) {
     });
 });
 
+router.post('/todo/done/:id', function (req, res) {
+    var todoId = req.params.id;
+    _todo2.default.findById(todoId).exec().then(function (todo) {
+        todo.done = !todo.done;
+        return todo.save();
+    }).then(function () {
+        res.redirect('/');
+    });
+});
+
 exports.default = router;

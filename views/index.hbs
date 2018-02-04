@@ -17,18 +17,33 @@
     {{#if todos}}
         <section>
             <h3>ToDos</h3>
+            <form action="/done" method="get">
+                <button type="submit">Show Done ToDos</button>
+            </form>
             <ul>
                 {{#each todos}}
-                    <li>{{this.description}} - {{this.done}}</li>
+                    <li>
+                        {{this.description}} - {{this.done}}
+                        <form action="/todo/done/{{this._id}}" method="post">
+                            <button type="submit">Done</button>
+                        </form>
+                    </li>
                 {{/each}}
             </ul>
         </section>
     {{else}}
         <section>
             <h3>Done ToDos</h3>
+            <form action="/" method="get">
+                <button type="submit">Show ToDos</button>
+            </form>
             <ul>
                 {{#each doneTodos}}
-                    <li>{{this.description}} - {{this.done}}</li>
+                    <li>{{this.description}} - {{this.done}}
+                        <form action="/todo/done/{{this._id}}" method="post">
+                            <button type="submit">Undo</button>
+                        </form>
+                    </li>
                 {{/each}}
             </ul>
         </section>
