@@ -18,7 +18,10 @@ var router = _express2.default.Router();
 
 router.get('/', function (req, res) {
     _todo2.default.find({}).then(function (results) {
-        res.render('index', { todos: results });
+        var todos = results.filter(function (todo) {
+            return !todo.done;
+        });
+        res.render('index', { todos: todos });
     });
 });
 
@@ -27,7 +30,7 @@ router.get('/done', function (req, res) {
         var doneTodos = results.filter(function (todo) {
             return todo.done;
         });
-        res.render('index', { todos: doneTodos });
+        res.render('index', { doneTodos: doneTodos });
     });
 });
 

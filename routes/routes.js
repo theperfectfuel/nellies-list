@@ -6,7 +6,10 @@ import Todo from '../models/todo';
 router.get('/', (req, res) => {
     Todo.find({})
         .then(results => {
-            res.render('index', {todos: results});
+            let todos = results.filter(todo => {
+                return !todo.done;
+            })
+            res.render('index', {todos: todos});
         })
 });
 
@@ -16,7 +19,7 @@ router.get('/done', (req, res) => {
             let doneTodos = results.filter(todo => {
                 return todo.done;
             })
-            res.render('index', {todos: doneTodos});
+            res.render('index', {doneTodos: doneTodos});
         })
 });
 

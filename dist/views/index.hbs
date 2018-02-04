@@ -8,13 +8,26 @@
 </head>
 <body>
     <h1>Nellie's List</h1>
-    <section>
-        <h3>Welcome</h3>
-        <ul>
-            {{#each todos}}
-                <li>{{this.description}} - {{this.done}}</li>
-            {{/each}}
-        </ul>
-    </section>
+
+    {{#if todos}}
+        <section>
+            <h3>ToDos</h3>
+            <ul>
+                {{#each todos}}
+                    <li>{{this.description}} - {{this.done}}</li>
+                {{/each}}
+            </ul>
+        </section>
+    {{else}}
+        <section>
+            <h3>Done ToDos</h3>
+            <ul>
+                {{#each doneTodos}}
+                    <li>{{this.description}} - {{this.done}}</li>
+                {{/each}}
+            </ul>
+        </section>
+    {{/if}}
+
 </body>
 </html>
