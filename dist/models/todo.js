@@ -33,13 +33,15 @@ var todoSchema = new Schema({
         default: Date.now
     },
     dueDate: {
-        type: Date
+        type: Date,
+        default: new Date() + 7 * 24 * 60 * 60 * 1000
     },
     category: {
         type: String
     },
     pointValue: {
-        type: Number
+        type: Number,
+        default: 10
     },
     priority: {
         type: Number

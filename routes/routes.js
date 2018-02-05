@@ -3,14 +3,20 @@ const router = express.Router();
 
 import Todo from '../models/todo';
 
+let pointTotal = 100;
+
 router.get('/', (req, res) => {
     Todo.find({})
         .then(results => {
             let todos = results.filter(todo => {
                 return !todo.done;
             })
-            res.render('index', {todos: todos});
-        })
+            res.render('index', 
+                {
+                    todos: todos, 
+                    pointTotal: pointTotal
+                });
+        });
 });
 
 router.get('/done', (req, res) => {
@@ -38,6 +44,8 @@ router.post('/todo/done/:id', (req, res) => {
         .exec()
         .then(todo => {
             todo.done = !todo.done;
+            pointTotal += todo.pointValue;
+            todo.pointValue = 0;
             return todo.save();
         })
         .then(() => {

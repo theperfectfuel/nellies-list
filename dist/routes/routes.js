@@ -16,12 +16,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
+var pointTotal = 100;
+
 router.get('/', function (req, res) {
     _todo2.default.find({}).then(function (results) {
         var todos = results.filter(function (todo) {
             return !todo.done;
         });
-        res.render('index', { todos: todos });
+        res.render('index', {
+            todos: todos,
+            pointTotal: pointTotal
+        });
     });
 });
 
@@ -45,6 +50,8 @@ router.post('/todo/done/:id', function (req, res) {
     var todoId = req.params.id;
     _todo2.default.findById(todoId).exec().then(function (todo) {
         todo.done = !todo.done;
+        pointTotal += todo.pointValue;
+        todo.pointValue = 0;
         return todo.save();
     }).then(function () {
         res.redirect('/');

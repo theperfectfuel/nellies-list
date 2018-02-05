@@ -4,56 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
     <title>Nellie's List</title>
 </head>
 <body>
-    <h1>Nellie's List</h1>
 
-    <form action="/todo" method="post">
-        <input type="text" name="description">
-        <button type="submit">Add Todo</button>
-    </form>
+    <div class="container">
 
-    {{#if todos}}
-        <section>
-            <h3>ToDos</h3>
-            <form action="/done" method="get">
-                <button type="submit">Show Done ToDos</button>
+        <h1>Nellie's List</h1>
+        <h4>Point Bank: {{pointTotal}}</h4>
+
+        <div class="main-form">
+            <form class="full-width" action="/todo" method="post">
+                <input type="text" name="description">
+                <div class="btn-group">
+                    <button class="btn btn-main" type="submit">Add Todo</button>
+                </div>
             </form>
-            <ul>
-                {{#each todos}}
-                    <li>
-                        {{this.description}} - {{this.done}}
-                        <form action="/todo/done/{{this._id}}" method="post">
-                            <button type="submit">Done</button>
-                        </form>
-                        <form action="/todo/delete/{{this._id}}" method="post">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </li>
-                {{/each}}
-            </ul>
-        </section>
-    {{else}}
-        <section>
-            <h3>Done ToDos</h3>
-            <form action="/" method="get">
-                <button type="submit">Show ToDos</button>
-            </form>
-            <ul>
-                {{#each doneTodos}}
-                    <li>{{this.description}} - {{this.done}}
-                        <form action="/todo/done/{{this._id}}" method="post">
-                            <button type="submit">Undo</button>
-                        </form>
-                        <form action="/todo/delete/{{this._id}}" method="post">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </li>
-                {{/each}}
-            </ul>
-        </section>
-    {{/if}}
+        </div>
+
+        {{#if todos}}
+            <section>
+                <h3>ToDos</h3>
+                <div class="done-toggle">
+                    <form action="/done" method="get">
+                        <button class="btn" type="submit">Show Done ToDos</button>
+                    </form>
+                </div>
+                <ul>
+                    {{#each todos}}
+                        <li>
+                            <div class="form-group">
+                                {{this.description}} - {{this.pointValue}}pts - {{this.dueDate}}
+                                <div class="btn-group">
+                                    <form action="/todo/done/{{this._id}}" method="post">
+                                        <button class="btn" type="submit">Done</button>
+                                    </form>
+                                    <form action="/todo/delete/{{this._id}}" method="post">
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </section>
+        {{else}}
+            <section>
+                <h3>Done ToDos</h3>
+                <div class="done-toggle">
+                    <form action="/" method="get">
+                        <button class="btn" type="submit">Show ToDos</button>
+                    </form>
+                </div>
+                <ul>
+                    {{#each doneTodos}}
+                        <li>
+                            <div class="form-group">
+                                {{this.description}} - {{this.pointValue}}pts
+                                <div class="btn-group">
+                                    <form action="/todo/done/{{this._id}}" method="post">
+                                        <button class="btn" type="submit">Undo</button>
+                                    </form>
+                                    <form action="/todo/delete/{{this._id}}" method="post">
+                                        <button class="btn" type="submit">Delete</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    {{/each}}
+                </ul>
+            </section>
+        {{/if}}
+
+
+    </div> <!-- Close container -->
+
 
 </body>
 </html>
