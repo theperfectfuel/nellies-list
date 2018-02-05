@@ -12,6 +12,7 @@
     <div class="container">
 
         <h1>Nellie's List</h1>
+        <h4>Point Bank: {{pointTotal}}</h4>
 
         <div class="main-form">
             <form class="full-width" action="/todo" method="post">
@@ -34,7 +35,7 @@
                     {{#each todos}}
                         <li>
                             <div class="form-group">
-                                {{this.description}}
+                                {{this.description}} - {{this.pointValue}}pts - {{this.dueDate}}
                                 <div class="btn-group">
                                     <form action="/todo/done/{{this._id}}" method="post">
                                         <button class="btn" type="submit">Done</button>
@@ -60,7 +61,7 @@
                     {{#each doneTodos}}
                         <li>
                             <div class="form-group">
-                                {{this.description}}
+                                {{this.description}} - {{this.pointValue}}pts
                                 <div class="btn-group">
                                     <form action="/todo/done/{{this._id}}" method="post">
                                         <button class="btn" type="submit">Undo</button>
