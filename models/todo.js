@@ -18,13 +18,9 @@ const todoSchema = new Schema({
         type: String,
         default: "Me"
     },
-    createdDate: {
-        type: Date,
-        default: Date.now
-    },
     dueDate: {
         type: Date,
-        default: new Date() + (7*24*60*60*1000)
+        default: Date.now
     },
     category: {
         type: String
@@ -36,6 +32,9 @@ const todoSchema = new Schema({
     priority: {
         type: Number
     }
+}, 
+{
+    timestamps: true
 });
 
 export default mongoose.model('Todo', todoSchema);
