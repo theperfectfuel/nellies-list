@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import moment from 'moment';
 
-var dueDate = moment().format();
+//var dueDate = moment().format("MMM Do YYYY");
 
 const Schema = mongoose.Schema;
 
@@ -23,7 +23,7 @@ const todoSchema = new Schema({
     },
     dueDate: {
         type: Date,
-        default: dueDate
+        default: Date.now
     },
     category: {
         type: String

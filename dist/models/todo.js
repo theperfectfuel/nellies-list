@@ -14,7 +14,7 @@ var _moment2 = _interopRequireDefault(_moment);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var dueDate = (0, _moment2.default)().format("MMM Do YY");
+//var dueDate = moment().format("MMM Do YYYY");
 
 var Schema = _mongoose2.default.Schema;
 
@@ -36,7 +36,7 @@ var todoSchema = new Schema({
     },
     dueDate: {
         type: Date,
-        default: dueDate
+        default: Date.now
     },
     category: {
         type: String

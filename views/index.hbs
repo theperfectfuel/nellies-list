@@ -35,7 +35,7 @@
                     {{#each todos}}
                         <li>
                             <div class="form-group">
-                                {{this.description}} - {{this.pointValue}}pts - {{this.dueDate}}
+                                {{this.description}} - {{this.pointValue}}pts - {{this.newDate}}
                                 <div class="btn-group">
                                     <form action="/todo/done/{{this._id}}" method="post">
                                         <button class="btn" type="submit">Done</button>
@@ -61,7 +61,7 @@
                     {{#each doneTodos}}
                         <li>
                             <div class="form-group">
-                                {{this.description}} - {{this.pointValue}}pts
+                                {{this.description}} - {{this.pointValue}}pts - {{this.newDate}}
                                 <div class="btn-group">
                                     <form action="/todo/done/{{this._id}}" method="post">
                                         <button class="btn" type="submit">Undo</button>
