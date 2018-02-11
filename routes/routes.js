@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
         .then(results => {
             let todos = results.filter(todo => {
                 todo.owner = 'Popeye';
-                todo.newDate = moment(todo.createdAt).add(7, 'days').format('LL');
+                todo.dueDate = moment(todo.createdAt).add(7, 'days').format('LL');
                 return !todo.done;
             })
             res.render('index', 

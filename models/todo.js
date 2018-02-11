@@ -21,10 +21,6 @@ const todoSchema = new Schema({
         type: String,
         default: "Me"
     },
-    dueDate: {
-        type: Date,
-        default: Date.now
-    },
     category: {
         type: String
     },
