@@ -1,4 +1,5 @@
 import express from 'express';
+import moment from 'moment';
 const router = express.Router();
 
 import Todo from '../models/todo';
@@ -9,6 +10,7 @@ router.get('/', (req, res) => {
     Todo.find({})
         .then(results => {
             let todos = results.filter(todo => {
+                todo.dueDate = moment(todo.createdAt).add(7, 'days').format('LL');
                 return !todo.done;
             })
             res.render('index', 
