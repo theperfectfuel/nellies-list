@@ -27,6 +27,7 @@ router.get('/', function (req, res) {
             todos: todos,
             pointTotal: pointTotal
         });
+        console.log(todos[0].dueDate);
     });
 });
 
