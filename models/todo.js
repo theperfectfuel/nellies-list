@@ -1,7 +1,4 @@
 import mongoose from 'mongoose';
-import moment from 'moment';
-
-//var dueDate = moment().format("MMM Do YYYY");
 
 const Schema = mongoose.Schema;
 

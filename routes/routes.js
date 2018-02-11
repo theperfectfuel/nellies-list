@@ -10,7 +10,6 @@ router.get('/', (req, res) => {
     Todo.find({})
         .then(results => {
             let todos = results.filter(todo => {
-                todo.owner = 'Popeye';
                 todo.dueDate = moment(todo.createdAt).add(7, 'days').format('LL');
                 return !todo.done;
             })

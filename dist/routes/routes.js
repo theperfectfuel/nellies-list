@@ -25,8 +25,7 @@ var pointTotal = 100;
 router.get('/', function (req, res) {
     _todo2.default.find({}).then(function (results) {
         var todos = results.filter(function (todo) {
-            todo.owner = 'Popeye';
-            todo.newDate = (0, _moment2.default)(todo.createdAt).add(7, 'days').format('LL');
+            todo.dueDate = (0, _moment2.default)(todo.createdAt).add(7, 'days').format('LL');
             return !todo.done;
         });
         res.render('index', {
