@@ -21,6 +21,18 @@ router.get('/', (req, res) => {
         });
 });
 
+router.post('/todo/edit/:id', (req, res) => {
+    Todo.findById(req.params.id)
+        .then(todo => {
+            console.log(todo);
+            res.render('todo', 
+                {
+                    todo: todo,
+                    pointTotal: pointTotal
+                });
+        });
+});
+
 router.get('/done', (req, res) => {
     Todo.find({})
         .then(results => {
