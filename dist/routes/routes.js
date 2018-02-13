@@ -35,6 +35,16 @@ router.get('/', function (req, res) {
     });
 });
 
+router.post('/todo/edit/:id', function (req, res) {
+    _todo2.default.findById(req.params.id).then(function (todo) {
+        console.log(todo);
+        res.render('todo', {
+            todo: todo,
+            pointTotal: pointTotal
+        });
+    });
+});
+
 router.get('/done', function (req, res) {
     _todo2.default.find({}).then(function (results) {
         var doneTodos = results.filter(function (todo) {
