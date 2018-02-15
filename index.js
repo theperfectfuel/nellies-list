@@ -17,7 +17,8 @@ app.engine('hbs', expressHbs({
     extname: 'hbs'
 }));
 app.set('view engine', 'hbs');
-app.use(express.static('views'));
+app.set('views', './views');
+app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', router);
 

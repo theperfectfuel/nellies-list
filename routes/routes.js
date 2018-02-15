@@ -3,7 +3,8 @@ import moment from 'moment';
 const router = express.Router();
 
 import Todo from '../models/todo';
-
+import mongoose from 'mongoose';
+//var ObjectId = require('mongodb').ObjectID;
 let pointTotal = 100;
 
 router.get('/', (req, res) => {
@@ -16,18 +17,6 @@ router.get('/', (req, res) => {
             res.render('index', 
                 {
                     todos: todos, 
-                    pointTotal: pointTotal
-                });
-        });
-});
-
-router.post('/todo/edit/:id', (req, res) => {
-    Todo.findById(req.params.id)
-        .then(todo => {
-            console.log(todo);
-            res.render('todo', 
-                {
-                    todo: todo,
                     pointTotal: pointTotal
                 });
         });
@@ -64,6 +53,18 @@ router.post('/todo/done/:id', (req, res) => {
         })
         .then(() => {
             res.redirect('/');
+        });
+});
+
+router.get('/todo/edit/:id', (req, res) => {
+    let todoId = req.params.id;
+    Todo.findById(todoId)
+        .exec()
+        .then(todo => {
+            res.render('todo', {todo: todo, pointTotal: pointTotal});
+        })
+        .catch(err => {
+            console.log(err);
         });
 });
 

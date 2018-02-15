@@ -16,10 +16,15 @@ var _todo = require('../models/todo');
 
 var _todo2 = _interopRequireDefault(_todo);
 
+var _mongoose = require('mongoose');
+
+var _mongoose2 = _interopRequireDefault(_mongoose);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var router = _express2.default.Router();
 
+//var ObjectId = require('mongodb').ObjectID;
 var pointTotal = 100;
 
 router.get('/', function (req, res) {
@@ -30,16 +35,6 @@ router.get('/', function (req, res) {
         });
         res.render('index', {
             todos: todos,
-            pointTotal: pointTotal
-        });
-    });
-});
-
-router.post('/todo/edit/:id', function (req, res) {
-    _todo2.default.findById(req.params.id).then(function (todo) {
-        console.log(todo);
-        res.render('todo', {
-            todo: todo,
             pointTotal: pointTotal
         });
     });
@@ -70,6 +65,15 @@ router.post('/todo/done/:id', function (req, res) {
         return todo.save();
     }).then(function () {
         res.redirect('/');
+    });
+});
+
+router.get('/todo/edit/:id', function (req, res) {
+    var todoId = req.params.id;
+    _todo2.default.findById(todoId).exec().then(function (todo) {
+        res.render('todo', { todo: todo, pointTotal: pointTotal });
+    }).catch(function (err) {
+        console.log(err);
     });
 });
 

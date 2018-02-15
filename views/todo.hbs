@@ -4,10 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{todo.description}}</title>
+    <link rel="stylesheet" href="/main.css">
+    <title>Something</title>
 </head>
 <body>
-    <h1>Points: {{pointTotal}}</h1>
-    <h2>{{todo.description}}</h2>
+
+    <div class="container">
+
+        <h1>Points: {{todo._id}}</h1>
+
+        <section>
+            <h3>Editing ToDo</h3>
+            <div class="done-toggle">
+                <form action="/" method="get">
+                    <button class="btn" type="submit">Show All ToDos</button>
+                </form>
+            </div>
+            <ul>
+                <li>
+                    <div class="form-group">
+                        {{todo.description}} - {{todo.pointValue}}pts - {{todo.dueDate}}
+                        <div class="btn-group">
+                            <form action="/todo/done/{{todo._id}}" method="post">
+                                <button class="btn" type="submit">Done</button>
+                            </form>
+                            <form action="/todo/delete/{{todo._id}}" method="post">
+                                <button class="btn" type="submit">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+    </div> <!-- close container -->
+
 </body>
 </html>
