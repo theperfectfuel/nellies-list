@@ -49,6 +49,15 @@ router.get('/done', function (req, res) {
     });
 });
 
+router.get('/todo/edit/:id', function (req, res) {
+    var todoId = req.params.id;
+    _todo2.default.findById(todoId).exec().then(function (todo) {
+        res.render('todo', { todo: todo, pointTotal: pointTotal });
+    }).catch(function (err) {
+        console.log(err);
+    });
+});
+
 router.post('/todo', function (req, res) {
     var newTodo = new _todo2.default({ description: req.body.description });
     newTodo.save().then(function () {
@@ -68,10 +77,16 @@ router.post('/todo/done/:id', function (req, res) {
     });
 });
 
-router.get('/todo/edit/:id', function (req, res) {
+router.post('/todo/edit/:id', function (req, res) {
     var todoId = req.params.id;
     _todo2.default.findById(todoId).exec().then(function (todo) {
-        res.render('todo', { todo: todo, pointTotal: pointTotal });
+        todo.pointValue = req.body.pointValue;
+        todo.category = req.body.category;
+        todo.owner = req.body.owner;
+        todo.createdBy = req.body.createdBy;
+        return todo.save();
+    }).then(function () {
+        res.redirect('/');
     }).catch(function (err) {
         console.log(err);
     });

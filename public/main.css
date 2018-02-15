@@ -70,3 +70,11 @@ ul li {
 .full-width {
     width: 100%;
 }
+
+.edit-row {
+    padding: 10px;
+}
+
+.edit-label {
+    width: 100px;
+}
