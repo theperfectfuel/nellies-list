@@ -32,6 +32,18 @@ router.get('/done', (req, res) => {
         })
 });
 
+router.get('/todo/edit/:id', (req, res) => {
+    let todoId = req.params.id;
+    Todo.findById(todoId)
+        .exec()
+        .then(todo => {
+            res.render('todo', {todo: todo, pointTotal: pointTotal});
+        })
+        .catch(err => {
+            console.log(err);
+        });
+});
+
 router.post('/todo', (req, res) => {
     let newTodo = new Todo({description: req.body.description});
     newTodo
@@ -56,12 +68,19 @@ router.post('/todo/done/:id', (req, res) => {
         });
 });
 
-router.get('/todo/edit/:id', (req, res) => {
+router.post('/todo/edit/:id', (req, res) => {
     let todoId = req.params.id;
     Todo.findById(todoId)
         .exec()
         .then(todo => {
-            res.render('todo', {todo: todo, pointTotal: pointTotal});
+            todo.pointValue = req.body.pointValue;
+            todo.category = req.body.category;
+            todo.owner = req.body.owner;
+            todo.createdBy = req.body.createdBy;
+            return todo.save();
+        })
+        .then(() => {
+            res.redirect('/');
         })
         .catch(err => {
             console.log(err);

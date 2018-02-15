@@ -11,13 +11,13 @@
 
     <div class="container">
 
-        <h1>Points: {{todo._id}}</h1>
+        <h1>Points: {{pointTotal}}</h1>
 
         <section>
             <h3>Editing ToDo</h3>
             <div class="done-toggle">
                 <form action="/" method="get">
-                    <button class="btn" type="submit">Show All ToDos</button>
+                    <button class="btn" type="submit">Cancel</button>
                 </form>
             </div>
             <ul>
@@ -25,13 +25,34 @@
                     <div class="form-group">
                         {{todo.description}} - {{todo.pointValue}}pts - {{todo.dueDate}}
                         <div class="btn-group">
-                            <form action="/todo/done/{{this._id}}" method="post">
+                            <form action="/todo/done/{{todo._id}}" method="post">
                                 <button class="btn" type="submit">Done</button>
                             </form>
-                            <form action="/todo/delete/{{this._id}}" method="post">
+                            <form action="/todo/delete/{{todo._id}}" method="post">
                                 <button class="btn" type="submit">Delete</button>
                             </form>
                         </div>
+                    </div>
+                    <div class="todo-info form-group">
+                        <form action="/todo/edit/{{todo._id}}" method="post">
+                            <div class="edit-row">
+                                <span class="edit-label">Point value:</span> 
+                                <input type="text" name="pointValue" value="{{todo.pointValue}}">
+                            </div>
+                            <div class="edit-row">
+                                <span class="edit-label">Category:</span> 
+                                <input type="text" name="category" value="{{todo.category}}">
+                            </div>
+                            <div class="edit-row">
+                                <span class="edit-label">Owner:</span> 
+                                <input type="text" name="owner" value="{{todo.owner}}">
+                            </div>
+                            <div class="edit-row">
+                                <span class="edit-label">Created by:</span> 
+                                <input type="text" name="createdBy" value="{{todo.createdBy}}">
+                            </div>
+                            <button class="btn" type="submit">Update</button>
+                        </form>
                     </div>
                 </li>
             </ul>

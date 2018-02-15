@@ -60,6 +60,7 @@ ul li {
     border-radius: 3px;
     background-color: lightblue;
     border: none;
+    color: red;
 }
 
 .btn-main {
