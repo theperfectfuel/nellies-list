@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/main.css">
     <title>Nellie's List</title>
 </head>
 <body>
@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 {{this.description}} - {{this.pointValue}}pts - {{this.dueDate}}
                                 <div class="btn-group">
-                                    <form action="/todo/edit/{{this._id}}" method="post">
+                                    <form action="/todo/edit/{{this._id}}" method="get">
                                         <button class="btn" type="submit">Edit</button>
                                     </form>
                                     <form action="/todo/done/{{this._id}}" method="post">

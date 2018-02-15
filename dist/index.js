@@ -34,7 +34,8 @@ app.engine('hbs', (0, _expressHandlebars2.default)({
     extname: 'hbs'
 }));
 app.set('view engine', 'hbs');
-app.use(_express2.default.static('views'));
+app.set('views', './views');
+app.use(_express2.default.static('public'));
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use('/', _routes2.default);
 
