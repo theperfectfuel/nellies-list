@@ -11,6 +11,10 @@ const todoSchema = new Schema({
         type: Boolean,
         default: false
     },
+    dueDateOffset: {
+        type: Number,
+        default: 7
+    },
     owner: {
         type: String
     },
