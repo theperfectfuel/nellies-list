@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
     Todo.find({})
         .then(results => {
             let todos = results.filter(todo => {
-                todo.dueDate = moment(todo.createdAt).add(7, 'days').format('LL');
+                todo.dueDate = moment(todo.createdAt).add(todo.dueDateOffset, 'days').format('LL');
                 return !todo.done;
             })
             res.render('index', 
@@ -77,6 +77,7 @@ router.post('/todo/edit/:id', (req, res) => {
             todo.category = req.body.category;
             todo.owner = req.body.owner;
             todo.createdBy = req.body.createdBy;
+            todo.dueDateOffset = req.body.dueDateOffset;
             return todo.save();
         })
         .then(() => {
