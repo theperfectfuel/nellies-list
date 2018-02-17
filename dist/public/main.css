@@ -60,7 +60,6 @@ ul li {
     border-radius: 3px;
     background-color: lightblue;
     border: none;
-    color: red;
 }
 
 .btn-main {
@@ -70,4 +69,12 @@ ul li {
 
 .full-width {
     width: 100%;
+}
+
+.edit-row {
+    padding: 10px;
+}
+
+.edit-label {
+    width: 100px;
 }
