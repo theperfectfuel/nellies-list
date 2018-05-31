@@ -39,6 +39,36 @@ app.use(_express2.default.static('public'));
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
 app.use('/', _routes2.default);
 
-app.listen(PORT, function () {
-    console.log('server listening on port: ' + PORT);
-});
+var server = void 0;
+
+function runServer() {
+    return new Promise(function (resolve, reject) {
+        server = app.listen(PORT, function () {
+            console.log('server listening on port: ' + PORT);
+            resolve(server);
+        }).on('error', function (err) {
+            reject(err);
+        });
+    });
+}
+
+function closeServer() {
+    return new Promise(function (resolve, reject) {
+        console.log('closing the server');
+        server.close(function (err) {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve();
+        });
+    });
+}
+
+if (require.main === module) {
+    runServer().catch(function (err) {
+        return console.log(err);
+    });
+}
+
+module.exports = { app: app, runServer: runServer, closeServer: closeServer };

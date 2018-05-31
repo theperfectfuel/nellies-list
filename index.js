@@ -22,6 +22,35 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', router);
 
-app.listen(PORT, () => {
-    console.log(`server listening on port: ${PORT}`);
-});
+let server;
+
+function runServer() {
+    return new Promise((resolve, reject) => {
+        server = app.listen(PORT, () => {
+            console.log(`server listening on port: ${PORT}`);
+            resolve(server);
+        })
+        .on('error', err => {
+            reject(err);
+        })
+    })
+}
+
+function closeServer() {
+    return new Promise((resolve, reject) => {
+        console.log('closing the server');
+        server.close(err => {
+            if (err) {
+                reject(err);
+                return;
+            }
+            resolve();
+        })
+    })
+}
+
+if (require.main === module) {
+    runServer().catch(err => console.log(err));
+}
+
+module.exports = {app, runServer, closeServer};
